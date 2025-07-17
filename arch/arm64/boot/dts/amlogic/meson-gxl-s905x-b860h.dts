@@ -10,7 +10,7 @@
 
 / {
 	compatible = "zte,b860h", "amlogic,p212";
-	model = "ZTE B860H";
+	model = "B860H ✧ s905x";
 
 };
 
