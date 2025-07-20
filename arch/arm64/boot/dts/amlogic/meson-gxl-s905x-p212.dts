@@ -11,7 +11,7 @@
 
 / {
 	compatible = "amlogic,p212", "amlogic,s905x", "amlogic,meson-gxl";
-	model = "Amlogic Meson GXL (S905X) P212 Development Board";
+	model = "HG680P ✧ s905x";
 
 	dio2133: analog-amplifier {
 		compatible = "simple-audio-amplifier";
@@ -50,10 +50,6 @@
 				"AU2 INR", "ACODEC LORN",
 				"Lineout", "AU2 OUTL",
 				"Lineout", "AU2 OUTR";
-		clocks = <&clkc CLKID_MPLL0>,
-			 <&clkc CLKID_MPLL1>,
-			 <&clkc CLKID_MPLL2>;
-
 		assigned-clocks = <&clkc CLKID_MPLL0>,
 				  <&clkc CLKID_MPLL1>,
 				  <&clkc CLKID_MPLL2>;
