@@ -240,6 +240,7 @@ static void option_instat_callback(struct urb *urb);
 #define BANDRICH_PRODUCT_1012			0x1012
 
 #define QUALCOMM_VENDOR_ID			0x05C6
+#define GENERIC_PRODUCT_T99W175			0x90d5
 /* These Quectel products use Qualcomm's vendor ID */
 #define QUECTEL_PRODUCT_UC20			0x9003
 #define QUECTEL_PRODUCT_UC15			0x9090
