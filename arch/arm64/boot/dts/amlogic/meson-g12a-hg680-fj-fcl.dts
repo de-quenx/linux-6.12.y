@@ -121,6 +121,10 @@ reserved-memory {
 	mali-supply=<&vddgpu>;
 };
 
+&tohdmitx {
+	status = "okay";
+};
+
 &hdmi_tx {
 	status = "okay";
 	pinctrl-0 = <&hdmitx_hpd_pins>, <&hdmitx_ddc_pins>;
@@ -131,6 +135,27 @@ reserved-memory {
 	hdmi_tx_tmds_out: endpoint {
 		remote-endpoint = <&hdmi_connector_in>;
 	};
+};
+
+&uart_A {
+	status = "okay";
+	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
+	pinctrl-names = "default";
+	uart-has-rtscts;
+
+	bluetooth {
+		compatible = "mtk,mt7663";
+		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
+		max-speed = <2000000>;
+		clocks = <&wifi32k>;
+		clock-names = "lpo";
+	};
+};
+
+&uart_AO {
+	status = "okay";
+	pinctrl-0 = <&uart_ao_a_pins>;
+	pinctrl-names = "default";
 };
 
 /* SDIO */
@@ -144,6 +169,7 @@ reserved-memory {
 
 	bus-width = <4>;
 	cap-sd-highspeed;
+	sd-uhs-sdr50;
 	sd-uhs-sdr104;
 	max-frequency = <200000000>;
 
@@ -164,24 +190,21 @@ reserved-memory {
 	status = "okay";
 	bus-width = <4>;
 	cap-sd-highspeed;
+	sd-uhs-sdr50;
+	sd-uhs-sdr104;
 	max-frequency = <200000000>;
 	vmmc-supply = <&vddao_3v3>;
 	vqmmc-supply = <&vddao_1v8>;
 };
 
-&uart_A {
+/* eMMC */
+&sd_emmc_c {
 	status = "okay";
-	pinctrl-0 = <&uart_a_pins>, <&uart_a_cts_rts_pins>;
-	pinctrl-names = "default";
-	uart-has-rtscts;
-
-	bluetooth {
-		compatible = "mtk,mt7663-bt";
-		shutdown-gpios = <&gpio GPIOX_17 GPIO_ACTIVE_HIGH>;
-		max-speed = <2000000>;
-		clocks = <&wifi32k>;
-		clock-names = "lpo";
-	};
+	bus-width = <8>;
+	cap-mmc-highspeed;
+	mmc-ddr-1_8v;
+	mmc-hs200-1_8v;
+	max-frequency = <200000000>;
 };
 
 /* CPU Overclock */
@@ -189,11 +212,6 @@ reserved-memory {
 	opp-1908000000 {
 		opp-hz = /bits/ 64 <1908000000>;
 		opp-microvolt = <1001000>;
-	};
-	
-	opp-2016000000 {
-		opp-hz = /bits/ 64 <2016000000>;
-		opp-microvolt = <1021000>;
 	};
 };
 
